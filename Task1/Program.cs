@@ -5,13 +5,13 @@ class Program
     static void Main(string[] args)
     {
         Money price = new Money(100, 50);
-        Product laptop = new Product("Laptop", price);
+        Product xiaomi = new Product("xiaomi", price);
         Warehouse warehouse = new Warehouse();
 
-        Reporting.IncomeInvoice(warehouse, laptop, 10);
-        warehouse.InventoryReport();
+        Reporting.IncomeInvoice(warehouse, xiaomi, 10);
+        warehouse.GenerateReport();
 
-        laptop.ReducePrice(new Money(10, 75));
-        Console.WriteLine($"New price of {laptop.Name}: {laptop.Price}");
+        xiaomi.ReducePrice(new Money(10, 75));
+        Console.WriteLine($"New price of {xiaomi.Name}: {xiaomi.Price}");
     }
 }

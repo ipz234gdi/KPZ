@@ -12,3 +12,4 @@ C:\IPZ-23-4-(2.2)\C#\Task1\obj\Debug\net9.0\refint\Task1.dll
 C:\IPZ-23-4-(2.2)\C#\Task1\obj\Debug\net9.0\Task1.pdb
 C:\IPZ-23-4-(2.2)\C#\Task1\obj\Debug\net9.0\Task1.genruntimeconfig.cache
 C:\IPZ-23-4-(2.2)\C#\Task1\obj\Debug\net9.0\ref\Task1.dll
+C:\IPZ-23-4-(2.2)\C#\Task1\obj\Debug\net9.0\Task1.sourcelink.json

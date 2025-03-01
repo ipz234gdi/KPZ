@@ -1,16 +1,14 @@
-using System;
-using System.Collections.Generic;
-
-public class Warehouse
+public class Warehouse : IReportable
 {
     private List<(Product, int)> products = new List<(Product, int)>();
 
     public void AddProduct(Product product, int quantity)
     {
+        if (quantity <= 0) throw new ArgumentException("Quantity must be greater than zero.");
         products.Add((product, quantity));
     }
 
-    public void InventoryReport()
+    public void GenerateReport()
     {
         Console.WriteLine("Inventory Report:");
         foreach (var (product, quantity) in products)

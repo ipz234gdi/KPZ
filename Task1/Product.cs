@@ -9,11 +9,12 @@ public class Product
         Price = price;
     }
 
-    public void ReducePrice(Money amount)
+    // OCP: Метод можна розширити в підкласах
+    public virtual void ReducePrice(Money amount)
     {
         int totalCents = Price.Whole * 100 + Price.Cents;
         int amountCents = amount.Whole * 100 + amount.Cents;
-
+        
         totalCents -= amountCents;
         Price.Whole = totalCents / 100;
         Price.Cents = totalCents % 100;

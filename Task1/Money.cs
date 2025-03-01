@@ -9,8 +9,5 @@ public class Money
         Cents = cents;
     }
 
-    public override string ToString()
-    {
-        return $"{Whole}.{Cents:D2}";
-    }
+    public override string ToString() => $"{Whole}.{Cents:D2}";
 }

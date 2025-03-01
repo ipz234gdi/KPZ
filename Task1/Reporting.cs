@@ -1,6 +1,6 @@
 using System;
 
-public class Reporting
+public static class Reporting
 {
     public static void IncomeInvoice(Warehouse warehouse, Product product, int quantity)
     {
