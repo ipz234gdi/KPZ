@@ -1,17 +1,26 @@
-﻿using System;
-
-class Program
+internal class Program
 {
     static void Main(string[] args)
     {
-        Money price = new Money(100, 50);
-        Product xiaomi = new Product("xiaomi", price);
-        Warehouse warehouse = new Warehouse();
+        var creators = new List<SubscriptionCreator>
+            {
+                new WebSite(),
+                new MobileApp(),
+                new ManagerCall()
+            };
 
-        Reporting.IncomeInvoice(warehouse, xiaomi, 10);
-        warehouse.GenerateReport();
+        for (int i = 0; i < creators.Count; i++)
+        {
+            var creator = creators[i];
+            Subscription subscription = null;
 
-        xiaomi.ReducePrice(new Money(10, 75));
-        Console.WriteLine($"New price of {xiaomi.Name}: {xiaomi.Price}");
+            if (i == 0) { subscription = creator.CreateSubscription("Premium"); }
+            else if (i == 1) { subscription = creator.CreateSubscription("Educational"); }
+            else if (i == 2) { subscription = creator.CreateSubscription("Domestic"); }
+
+            Console.WriteLine(subscription);
+            Console.WriteLine();
+        }
     }
 }
+
