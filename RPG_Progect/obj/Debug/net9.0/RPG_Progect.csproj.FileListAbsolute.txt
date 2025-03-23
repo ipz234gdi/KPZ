@@ -1,0 +1,15 @@
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\RPG_Progect.GeneratedMSBuildEditorConfig.editorconfig
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\RPG_Progect.AssemblyInfoInputs.cache
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\RPG_Progect.AssemblyInfo.cs
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\RPG_Progect.csproj.CoreCompileInputs.cache
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\RPG_Progect.sourcelink.json
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\bin\Debug\net9.0\RPG_Progect.exe
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\bin\Debug\net9.0\RPG_Progect.deps.json
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\bin\Debug\net9.0\RPG_Progect.runtimeconfig.json
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\bin\Debug\net9.0\RPG_Progect.dll
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\bin\Debug\net9.0\RPG_Progect.pdb
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\RPG_Progect.dll
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\refint\RPG_Progect.dll
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\RPG_Progect.pdb
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\RPG_Progect.genruntimeconfig.cache
+C:\IPZ-23-4-(2.2)\C#\RPG_Progect\obj\Debug\net9.0\ref\RPG_Progect.dll
