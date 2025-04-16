@@ -1,6 +1,3 @@
-// using CLightNode;
-using BehavioralPatterns.Iterators;
-
 namespace BehavioralPatterns.Composite
 {
     public class LightElementNode : LightNode
@@ -36,25 +33,35 @@ namespace BehavioralPatterns.Composite
             _children = new List<LightNode>();
         }
 
-        // === 2. Властивість Children для ітератора ===
-        public IReadOnlyList<LightNode> Children => _children;
 
-        // === 3. Методи для створення ітераторів ===
-        public IIterator<LightNode> CreateDepthFirstIterator()
-            => new DepthFirstIterator(this);
 
-        public IIterator<LightNode> CreateBreadthFirstIterator()
-            => new BreadthFirstIterator(this);
+
+
+
+
+
+
 
         public void AddClass(string className)
         {
-            _cssClasses.Add(className);
+            if (!_cssClasses.Contains(className))
+                _cssClasses.Add(className);
         }
 
         public void AddChild(LightNode child)
         {
             _children.Add(child);
             _CountClasses++;
+        }
+
+        public void RemoveChild(LightNode child)
+        {
+            _children.Remove(child);
+        }
+
+        public void RemoveClass(string className)
+        {
+            _cssClasses.Remove(className);
         }
 
         private string Indent(int level)
@@ -84,6 +91,8 @@ namespace BehavioralPatterns.Composite
         {
             return string.Join("", _children.Select(child => child.OuterHTML()));
         }
+
+        public IReadOnlyList<string> CssClasses => _cssClasses;
 
         public int getCountClasses()
         {
