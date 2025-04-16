@@ -1,3 +1,5 @@
+using BehavioralPatterns.State;
+
 namespace BehavioralPatterns.Composite
 {
     public class LightElementNode : LightNode
@@ -8,6 +10,7 @@ namespace BehavioralPatterns.Composite
         private List<string> _cssClasses;
         private List<LightNode> _children;
         private int _CountClasses = 0;
+        private IElementState _state = new EnabledState();
 
         public LightElementNode(string tagName)
             : this(tagName, true, false)
@@ -33,25 +36,31 @@ namespace BehavioralPatterns.Composite
             _children = new List<LightNode>();
         }
 
-
-
-
-
-
-
-
-
-
-        public void AddClass(string className)
+        public void SetState(IElementState newState)
         {
-            if (!_cssClasses.Contains(className))
-                _cssClasses.Add(className);
+            _state = newState;
         }
 
         public void AddChild(LightNode child)
         {
+            _state.AddChild(this, child);
+        }
+
+        public void AddClass(string className)
+        {
+            _state.AddClass(this, className);
+        }
+
+        internal void AddChildInternal(LightNode child)
+        {
             _children.Add(child);
             _CountClasses++;
+        }
+
+        internal void AddClassInternal(string className)
+        {
+            if (!_cssClasses.Contains(className))
+                _cssClasses.Add(className);
         }
 
         public void RemoveChild(LightNode child)

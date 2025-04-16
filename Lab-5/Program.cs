@@ -2,7 +2,8 @@
 using BehavioralPatterns;
 using BehavioralPatterns.Composite;
 
-using BehavioralPatterns.Commands;
+
+using BehavioralPatterns.State;
 
 
 var root = new LightElementNode("div");
@@ -13,58 +14,16 @@ para.AddChild(new LightTextNode("Привіт, світ!"));
 root.AddChild(para);
 
 
+// State
+para.SetState(new DisabledState());
+try { para.AddChild(new LightTextNode("додано1")); }
+catch (Exception ex) { Console.WriteLine(ex.Message); }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Command
-var mgr = new CommandManager();
-
-// Додаємо параграф до root
-var addParaCmd = new AddChildCommand(root, para);
-mgr.ExecuteCommand(addParaCmd);
-Console.WriteLine("Після додавання <p>:");
+para.SetState(new EnabledState());
+para.AddChild(new LightTextNode("додано2"));
+Console.WriteLine("Після EnabledState:");
 Console.WriteLine(root.OuterHTML());
-
-// Додаємо клас 'highlight' до параграфа
-var addClassCmd = new AddClassCommand(para, "highlight");
-mgr.ExecuteCommand(addClassCmd);
-Console.WriteLine("\nПісля додавання класу:");
-Console.WriteLine(root.OuterHTML());
-
-// Undo додавання класу
-mgr.Undo();
-Console.WriteLine("\nПісля Undo класу:");
-Console.WriteLine(root.OuterHTML());
-
-// Undo додавання параграфа
-mgr.Undo();
-Console.WriteLine("\nПісля Undo параграфа:");
-Console.WriteLine(root.OuterHTML());
-
-// Redo додавання параграфа
-mgr.Redo();
-Console.WriteLine("\nПісля Redo параграфа:");
-Console.WriteLine(root.OuterHTML());
-
-// Redo додавання класу
-mgr.Redo();
-Console.WriteLine("\nПісля Redo класу:");
-Console.WriteLine(root.OuterHTML());
-
 
 // Рендеринг HTML
 // Console.WriteLine("Rendered HTML:");
