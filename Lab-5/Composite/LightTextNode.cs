@@ -1,3 +1,5 @@
+using BehavioralPatterns.Visitor;
+
 namespace BehavioralPatterns
 {
     public class LightTextNode : LightNode
@@ -12,5 +14,7 @@ namespace BehavioralPatterns
         public override string OuterHTML() => _text;
 
         public override string InnerHTML() => _text;
+
+        public override void Accept(ILightNodeVisitor visitor) => visitor.Visit(this);
     }
 }
