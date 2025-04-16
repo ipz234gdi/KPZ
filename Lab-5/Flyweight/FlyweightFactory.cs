@@ -1,5 +1,3 @@
-// using CLightElementNode;
-
 namespace BehavioralPatterns.Composite
 {
     public class FlyweightFactory

@@ -1,7 +1,3 @@
-// using CFlyweightFactory;
-// using CLightElementNode;
-// using CLightTextNode;
-
 namespace BehavioralPatterns.Composite
 {
     public class BookToHTMLConverter
@@ -21,7 +17,6 @@ namespace BehavioralPatterns.Composite
             {
                 string rawLine = lines[i];
                 string line = rawLine.TrimEnd();
-                // Console.WriteLine($"[{rawLine}]");
 
                 string tag;
                 if (i == 0)

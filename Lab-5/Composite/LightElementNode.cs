@@ -1,4 +1,3 @@
-// using CLightNode;
 using BehavioralPatterns.Iterators;
 
 namespace BehavioralPatterns.Composite
@@ -26,7 +25,6 @@ namespace BehavioralPatterns.Composite
             _children = new List<LightNode>();
         }
 
-        // Task6
         public LightElementNode(LightElementNode template)
         {
             _tagName = template._tagName;
@@ -36,10 +34,8 @@ namespace BehavioralPatterns.Composite
             _children = new List<LightNode>();
         }
 
-        // === 2. Властивість Children для ітератора ===
         public IReadOnlyList<LightNode> Children => _children;
 
-        // === 3. Методи для створення ітераторів ===
         public IIterator<LightNode> CreateDepthFirstIterator()
             => new DepthFirstIterator(this);
 

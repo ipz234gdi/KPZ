@@ -19,8 +19,8 @@ namespace BehavioralPatterns.Iterators
             {
                 var top = _stack.Peek();
                 if (top.MoveNext()) 
-                    return true;    // ми зрушили курсор і є поточний елемент
-                _stack.Pop();      // цей енум закінчився — знімаємо зі стеку
+                    return true;
+                _stack.Pop();
             }
             return false;
         }
@@ -30,11 +30,9 @@ namespace BehavioralPatterns.Iterators
             if (_stack.Count == 0)
                 throw new InvalidOperationException("No more elements");
 
-            // Ми припускаємо, що HasNext() вже зрушив курсор на валідний Current
             var currentEnumerator = _stack.Peek();
             var current = currentEnumerator.Current;
 
-            // Якщо це вузол із дітьми — додаємо їх енум у стек
             if (current is LightElementNode elem)
                 _stack.Push(elem.Children.GetEnumerator());
 
