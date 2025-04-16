@@ -1,5 +1,3 @@
-using BehavioralPatterns.Visitor;
-
 namespace BehavioralPatterns.Composite
 {
     public class LightElementNode : LightNode
@@ -17,7 +15,6 @@ namespace BehavioralPatterns.Composite
             : this(tagName, true, false)
         {
         }
-
         public LightElementNode(string tagName, bool isBlock, bool isSelfClosing)
         {
             _tagName = tagName;
@@ -47,7 +44,6 @@ namespace BehavioralPatterns.Composite
             _children.Add(child);
             _CountClasses++;
         }
-
         public override void Accept(ILightNodeVisitor visitor)
         {
             visitor.Visit(this);

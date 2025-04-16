@@ -13,6 +13,7 @@ para.AddClass("root");
 root.AddChild(para);
 
 
+
 // Visitor
 var vis = new ElementCountVisitor();
 var cssVisitor = new CssClassCollectorVisitor();
@@ -27,6 +28,7 @@ foreach (var entry in cssVisitor.ClassCounts)
     Console.WriteLine($" • {entry.Key}: {entry.Value} раз(и)");
 }
 Console.WriteLine("");
+
 // Рендеринг HTML
 Console.WriteLine("Rendered HTML:");
 Console.WriteLine(root.OuterHTML());
