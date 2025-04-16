@@ -1,6 +1,4 @@
-using CLightNode;
-
-namespace CLightElementNode
+namespace BehavioralPatterns.Composite
 {
     public class LightElementNode : LightNode
     {
@@ -30,7 +28,6 @@ namespace CLightElementNode
             _children = new List<LightNode>();
         }
 
-
         public void AddClass(string className)
         {
             _cssClasses.Add(className);
@@ -40,6 +37,16 @@ namespace CLightElementNode
         {
             _children.Add(child);
             _CountClasses++;
+        }
+
+        public void RemoveChild(LightNode child)
+        {
+            _children.Remove(child);
+        }
+
+        public void RemoveClass(string className)
+        {
+            _cssClasses.Remove(className);
         }
 
         private string Indent(int level)
@@ -69,6 +76,8 @@ namespace CLightElementNode
         {
             return string.Join("", _children.Select(child => child.OuterHTML()));
         }
+
+        public IReadOnlyList<string> CssClasses => _cssClasses;
 
         public int getCountClasses()
         {

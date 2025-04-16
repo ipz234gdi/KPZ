@@ -1,4 +1,4 @@
-namespace CLightNode
+namespace BehavioralPatterns
 {
     public abstract class LightNode
     {

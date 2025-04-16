@@ -1,6 +1,4 @@
-using CLightNode;
-
-namespace CLightTextNode
+namespace BehavioralPatterns
 {
     public class LightTextNode : LightNode
     {
