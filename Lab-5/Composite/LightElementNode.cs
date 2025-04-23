@@ -1,3 +1,5 @@
+using BehavioralPatterns.Visitor;
+
 namespace BehavioralPatterns.Composite
 {
     public class LightElementNode : LightNode
@@ -44,6 +46,12 @@ namespace BehavioralPatterns.Composite
         {
             _children.Add(child);
             _CountClasses++;
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.Visit(this);
+            foreach (var c in _children) c.Accept(visitor);
         }
 
         internal void AddChildInternal(LightNode child)
