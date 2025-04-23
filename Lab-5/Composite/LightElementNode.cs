@@ -41,6 +41,14 @@ namespace BehavioralPatterns.Composite
             _children = new List<LightNode>();
         }
 
+        public void AddClass(string className)
+        {
+            if (!_cssClasses.Contains(className))
+                _cssClasses.Add(className);
+        }
+
+        public void AddChild(LightNode child)
+
         public IReadOnlyList<LightNode> Children => _children;
 
         public IIterator<LightNode> CreateDepthFirstIterator()
