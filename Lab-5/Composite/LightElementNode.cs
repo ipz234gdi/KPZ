@@ -1,3 +1,4 @@
+using BehavioralPatterns.State;
 using BehavioralPatterns.Visitor;
 
 namespace BehavioralPatterns.Composite
@@ -8,6 +9,9 @@ namespace BehavioralPatterns.Composite
         private bool _isBlock;
         private bool _isSelfClosing;
         private List<string> _cssClasses;
+        private List<LightNode> _children;
+        private int _CountClasses = 0;
+        private IElementState _state = new EnabledState();
         public string TagName => _tagName;
         public IReadOnlyList<LightNode> Children => _children;
         private List<LightNode> _children;
@@ -37,6 +41,10 @@ namespace BehavioralPatterns.Composite
             _children = new List<LightNode>();
         }
 
+        public void SetState(IElementState newState)
+        {
+            _state = newState;
+            
         public void AddClass(string className)
         {
             _cssClasses.Add(className);
@@ -44,6 +52,12 @@ namespace BehavioralPatterns.Composite
 
         public void AddChild(LightNode child)
         {
+            _state.AddChild(this, child);
+        }
+
+        public void AddClass(string className)
+        {
+            _state.AddClass(this, className);
             _children.Add(child);
             _CountClasses++;
         }

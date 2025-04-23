@@ -16,5 +16,6 @@ namespace BehavioralPatterns
         public override string InnerHTML() => _text;
 
         public override void Accept(ILightNodeVisitor visitor) => visitor.Visit(this);
+
     }
 }
