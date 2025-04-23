@@ -1,3 +1,4 @@
+using BehavioralPatterns.Iterators;
 using BehavioralPatterns.State;
 using BehavioralPatterns.Visitor;
 
@@ -31,7 +32,6 @@ namespace BehavioralPatterns.Composite
             _children = new List<LightNode>();
         }
 
-        // Task6
         public LightElementNode(LightElementNode template)
         {
             _tagName = template._tagName;
@@ -40,6 +40,14 @@ namespace BehavioralPatterns.Composite
             _cssClasses = new List<string>(template._cssClasses);
             _children = new List<LightNode>();
         }
+
+        public IReadOnlyList<LightNode> Children => _children;
+
+        public IIterator<LightNode> CreateDepthFirstIterator()
+            => new DepthFirstIterator(this);
+
+        public IIterator<LightNode> CreateBreadthFirstIterator()
+            => new BreadthFirstIterator(this);
 
         public void SetState(IElementState newState)
         {
