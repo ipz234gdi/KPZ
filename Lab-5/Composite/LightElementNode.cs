@@ -1,4 +1,5 @@
 using BehavioralPatterns.State;
+using BehavioralPatterns.Visitor;
 
 namespace BehavioralPatterns.Composite
 {
@@ -11,6 +12,10 @@ namespace BehavioralPatterns.Composite
         private List<LightNode> _children;
         private int _CountClasses = 0;
         private IElementState _state = new EnabledState();
+        public string TagName => _tagName;
+        public IReadOnlyList<LightNode> Children => _children;
+        private List<LightNode> _children;
+        private int _CountClasses = 0;
 
         public LightElementNode(string tagName)
             : this(tagName, true, false)
@@ -39,6 +44,10 @@ namespace BehavioralPatterns.Composite
         public void SetState(IElementState newState)
         {
             _state = newState;
+            
+        public void AddClass(string className)
+        {
+            _cssClasses.Add(className);
         }
 
         public void AddChild(LightNode child)
@@ -49,6 +58,14 @@ namespace BehavioralPatterns.Composite
         public void AddClass(string className)
         {
             _state.AddClass(this, className);
+            _children.Add(child);
+            _CountClasses++;
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.Visit(this);
+            foreach (var c in _children) c.Accept(visitor);
         }
 
         internal void AddChildInternal(LightNode child)
