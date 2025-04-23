@@ -1,3 +1,7 @@
+using BehavioralPatterns.Iterators;
+using BehavioralPatterns.State;
+using BehavioralPatterns.Visitor;
+
 namespace BehavioralPatterns.Composite
 {
     public class LightElementNode : LightNode
@@ -6,6 +10,11 @@ namespace BehavioralPatterns.Composite
         private bool _isBlock;
         private bool _isSelfClosing;
         private List<string> _cssClasses;
+        private List<LightNode> _children;
+        private int _CountClasses = 0;
+        private IElementState _state = new EnabledState();
+        public string TagName => _tagName;
+        public IReadOnlyList<LightNode> Children => _children;
         private List<LightNode> _children;
         private int _CountClasses = 0;
 
@@ -23,7 +32,6 @@ namespace BehavioralPatterns.Composite
             _children = new List<LightNode>();
         }
 
-        // Task6
         public LightElementNode(LightElementNode template)
         {
             _tagName = template._tagName;
@@ -33,15 +41,6 @@ namespace BehavioralPatterns.Composite
             _children = new List<LightNode>();
         }
 
-
-
-
-
-
-
-
-
-
         public void AddClass(string className)
         {
             if (!_cssClasses.Contains(className))
@@ -49,9 +48,52 @@ namespace BehavioralPatterns.Composite
         }
 
         public void AddChild(LightNode child)
+
+        public IReadOnlyList<LightNode> Children => _children;
+
+        public IIterator<LightNode> CreateDepthFirstIterator()
+            => new DepthFirstIterator(this);
+
+        public IIterator<LightNode> CreateBreadthFirstIterator()
+            => new BreadthFirstIterator(this);
+
+        public void SetState(IElementState newState)
+        {
+            _state = newState;
+            
+        public void AddClass(string className)
+        {
+            _cssClasses.Add(className);
+        }
+
+        public void AddChild(LightNode child)
+        {
+            _state.AddChild(this, child);
+        }
+
+        public void AddClass(string className)
+        {
+            _state.AddClass(this, className);
+            _children.Add(child);
+            _CountClasses++;
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.Visit(this);
+            foreach (var c in _children) c.Accept(visitor);
+        }
+
+        internal void AddChildInternal(LightNode child)
         {
             _children.Add(child);
             _CountClasses++;
+        }
+
+        internal void AddClassInternal(string className)
+        {
+            if (!_cssClasses.Contains(className))
+                _cssClasses.Add(className);
         }
 
         public void RemoveChild(LightNode child)
