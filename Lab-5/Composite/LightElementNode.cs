@@ -1,4 +1,6 @@
 using BehavioralPatterns.Iterators;
+using BehavioralPatterns.State;
+using BehavioralPatterns.Visitor;
 
 namespace BehavioralPatterns.Composite
 {
@@ -8,6 +10,11 @@ namespace BehavioralPatterns.Composite
         private bool _isBlock;
         private bool _isSelfClosing;
         private List<string> _cssClasses;
+        private List<LightNode> _children;
+        private int _CountClasses = 0;
+        private IElementState _state = new EnabledState();
+        public string TagName => _tagName;
+        public IReadOnlyList<LightNode> Children => _children;
         private List<LightNode> _children;
         private int _CountClasses = 0;
 
@@ -42,6 +49,10 @@ namespace BehavioralPatterns.Composite
         public IIterator<LightNode> CreateBreadthFirstIterator()
             => new BreadthFirstIterator(this);
 
+        public void SetState(IElementState newState)
+        {
+            _state = newState;
+            
         public void AddClass(string className)
         {
             _cssClasses.Add(className);
@@ -49,8 +60,42 @@ namespace BehavioralPatterns.Composite
 
         public void AddChild(LightNode child)
         {
+            _state.AddChild(this, child);
+        }
+
+        public void AddClass(string className)
+        {
+            _state.AddClass(this, className);
             _children.Add(child);
             _CountClasses++;
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.Visit(this);
+            foreach (var c in _children) c.Accept(visitor);
+        }
+
+        internal void AddChildInternal(LightNode child)
+        {
+            _children.Add(child);
+            _CountClasses++;
+        }
+
+        internal void AddClassInternal(string className)
+        {
+            if (!_cssClasses.Contains(className))
+                _cssClasses.Add(className);
+        }
+
+        public void RemoveChild(LightNode child)
+        {
+            _children.Remove(child);
+        }
+
+        public void RemoveClass(string className)
+        {
+            _cssClasses.Remove(className);
         }
 
         private string Indent(int level)
@@ -80,6 +125,8 @@ namespace BehavioralPatterns.Composite
         {
             return string.Join("", _children.Select(child => child.OuterHTML()));
         }
+
+        public IReadOnlyList<string> CssClasses => _cssClasses;
 
         public int getCountClasses()
         {
